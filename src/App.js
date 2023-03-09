@@ -1,14 +1,16 @@
 import './App.css';
-import Main from './components/main';
-import Aside from './components/aside';
+import ClassApp from './components/ClassApp'
+import Clock from './components/Clock';
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <Aside />
-      <Main />
+    <div>
+      {/* <ClassApp /> */}
+      <Clock />
     </div>
   );
 }
+
 
 export default App;
