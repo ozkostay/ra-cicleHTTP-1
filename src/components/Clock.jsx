@@ -27,12 +27,12 @@ export default class Clock extends React.Component {
   }
 
   tick() {
-    // this.setState({
-    //   date: new Date()
-    // });
     this.setState({
-      aaa: this.state.aaa + 1
+      date: new Date()
     });
+    // this.setState({
+    //   aaa: this.state.aaa + 1
+    // });
     
     console.log('tick', this.timerID);
   }
@@ -41,9 +41,9 @@ export default class Clock extends React.Component {
     return (
       <div>
         <h1>Hello, world!</h1>
-        {/* <h2>It is {this.state.date.toLocaleTimeString()}.</h2> */}
-        <h2>It is {this.state.aaa}.</h2>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        {/* <h2>It is {this.state.aaa}.</h2> */}
       </div>
     );
   }
-} ёёёёёёёёёёёёёёёёёёёёёёёёёёёёёёёёёёё
+}
