@@ -6,7 +6,6 @@ export default function AddForm({fnAdd}) {
 
   const onClickButton = (event) => {
     event.preventDefault();
-    // console.log('Нажали кнопку', name, shift);
     fnAdd(name, shift);
     setName('');
     setShift('');

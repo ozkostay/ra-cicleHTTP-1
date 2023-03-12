@@ -1,48 +1,60 @@
 import React from "react";
+import './Clock.css';
 
 export default class Clock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       date: new Date(),
-      aaa: 0
     };
+    this.delete2Clock = props.fnDelete;
+    this.shift = props.item.shift;
+    this.id = props.item.id;
+    this.tempDel = props.tempDel;
   }
 
   componentDidMount() {
+    this.setState({
+      date: this.selectedZone()
+    });
+
     this.timerID = setInterval(
       () => this.tick(),
       1000
     );
-    console.log('componentDidMount', this.timerID);
   }
 
   componentDidUpdate() {
-    console.log('componentDidUpdate', this.timerID);
+    // console.log('componentDidUpdate', this.timerID);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
-    console.log('componentWillUnmount');
+  }
+
+  selectedZone() {
+    const milliseconds = 60 * 60 * 1000;
+    const now = new Date();
+    const localTimeZone = now.getTimezoneOffset() / 60;
+    const dateUTC = new Date(now.getTime() + (localTimeZone * milliseconds));
+    const toReturn = new Date(dateUTC.getTime() + (this.shift * milliseconds));
+    return toReturn;
   }
 
   tick() {
     this.setState({
-      date: new Date()
+      date: this.selectedZone()
     });
-    // this.setState({
-    //   aaa: this.state.aaa + 1
-    // });
-    
-    console.log('tick', this.timerID);
   }
 
   render() {
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        {/* <h2>It is {this.state.aaa}.</h2> */}
+      <div className='cicle-wrrap'>
+        <div onClick={() => this.tempDel()}><h5 className='title-cicle'>Зона {this.shift}</h5></div>
+        <div className='big-cicle'>
+          <h2>{this.state.date.toLocaleTimeString()}.</h2>
+          <div className='little-cicle' onClick={() => this.delete2Clock(this.id)}>X</div>
+        </div>
       </div>
     );
   }
