@@ -24,25 +24,12 @@ function App() {
   const deleteClock = (id) => {
     
     console.log('deleteClock !!!!!', id);
-    // //const tempArr = arrTimeZone.filter((item) => item.id !== id);
-    // const arr2 = [...arrTimeZone]
-    // const tempArr = [];
     tempDel();
-    // console.log('arrTimeZone', arr2);
-    // arrTimeZone.forEach((item) => {
-    //   console.log('FFFFF', item.id);
-    //   // if (item.id !== id) {
-    //   //   tempArr.push(item);
-    //   // }
-    // });
-
-    // console.log('tempArr', tempArr);
-    // setArrTimeZone(tempArr);
+    setArrTimeZone(arrTimeZone.filter((item) => item.id !== id));
   }
   
   const tempDel = () => {
     console.log('temDel arr: ', arrTimeZone);
-    //toDelId =
   }
 
   const aaa = () => {
