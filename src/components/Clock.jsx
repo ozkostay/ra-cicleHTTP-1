@@ -7,10 +7,7 @@ export default class Clock extends React.Component {
     this.state = {
       date: new Date(),
     };
-    this.delete2Clock = props.fnDelete;
     this.shift = props.item.shift;
-    this.id = props.item.id;
-    this.tempDel = props.tempDel;
   }
 
   componentDidMount() {
@@ -37,8 +34,8 @@ export default class Clock extends React.Component {
     const now = new Date();
     const localTimeZone = now.getTimezoneOffset() / 60;
     const dateUTC = new Date(now.getTime() + (localTimeZone * milliseconds));
-    const toReturn = new Date(dateUTC.getTime() + (this.shift * milliseconds));
-    return toReturn;
+    const dateToReturn = new Date(dateUTC.getTime() + (this.shift * milliseconds));
+    return dateToReturn;
   }
 
   tick() {
@@ -48,12 +45,13 @@ export default class Clock extends React.Component {
   }
 
   render() {
+    const {fnDelete, tempDel, item} = this.props;
     return (
       <div className='cicle-wrrap'>
-        <div onClick={() => this.tempDel()}><h5 className='title-cicle'>Зона {this.shift}</h5></div>
+        <div onClick={() => tempDel()}><h5 className='title-cicle'>{item.name} {item.shift}</h5></div>
         <div className='big-cicle'>
           <h2>{this.state.date.toLocaleTimeString()}.</h2>
-          <div className='little-cicle' onClick={() => this.delete2Clock(this.id)}>X</div>
+          <div className='little-cicle' onClick={() => fnDelete(item.id)}>X</div>
         </div>
       </div>
     );
